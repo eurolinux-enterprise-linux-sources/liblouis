@@ -6,7 +6,7 @@
 
 Name:           liblouis
 Version:        2.5.2
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Braille translation and back-translation library
 
 Group:          System Environment/Libraries
@@ -14,6 +14,8 @@ License:        LGPLv3+
 URL:            http://www.abilitiessoft.com/
 Source0:        http://liblouis.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Patch0:         security-fixes.patch
 
 BuildRequires:  help2man
 BuildRequires:  texinfo-tex
@@ -99,6 +101,7 @@ This package provides the documentation for liblouis.
 
 %prep
 %setup -q
+%patch0 -p1
 
 
 %build
@@ -186,6 +189,10 @@ fi
 
 
 %changelog
+* Fri Sep 15 2017 Rui Matos <rmatos@redhat.com> - 2.5.2-11
+- Resolves: CVE-2017-13738, CVE-2017-13740, CVE-2017-13741,
+  CVE-2017-13742, CVE-2017-13743, CVE-2017-13744, CVE-2014-8184
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.5.2-10
 - Mass rebuild 2014-01-24
 
